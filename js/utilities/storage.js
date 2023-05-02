@@ -1,15 +1,15 @@
 export const storageKey = "articles";
 
-export function storageSetItem(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
+export function storageSetItem(obj) {
+  localStorage.setItem(obj.key, JSON.stringify(obj.value));
 }
 
 export function storageGetItem(key) {
-  const articles = localStorage.getItem(key);
+  const favs = localStorage.getItem(key);
 
-  if (!articles) {
+  if (!favs) {
     return [];
   } else {
-    return JSON.parse(articles);
+    return JSON.parse(favs);
   }
 }

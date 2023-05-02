@@ -1,48 +1,18 @@
 import { baseUrl } from "./settings/api.js";
-import {
-  storageKey,
-  storageSetItem,
-  storageGetItem,
-} from "./utilities/storage.js";
+import { renderArticles } from "./components/renderArticles.js";
+import { filterArticles } from "./utilities/filterFunction.js";
 
 const articlesUrl = `${baseUrl}articles`;
+const container = ".articles-container";
 
-(async function () {
-  const container = document.querySelector(".articles-container");
-
+(async function getArticles() {
   try {
     const response = await fetch(articlesUrl);
-    const json = await response.json();
+    const articles = await response.json();
 
-    container.innerHTML = "";
-
-    json.forEach(function (article) {
-      let cssIcon = "fa-regular";
-
-      container.innerHTML += `<div class="article">
-                                    <div>
-                                        <h3>${article.title}</h3>
-                                        <p>by ${article.author}</p>
-                                        <p>${article.summary}</p>
-                                    </div>
-                                        <i class="${cssIcon} fa-heart" data-id="${article.id}" data-title="${article.title}" data-author="${article.author}" data-summary="${article.summary}"></i>
-                                </div>`;
-    });
-
-    const favButtons = document.querySelectorAll(".article i");
-
-    favButtons.forEach(function (button) {
-      button.addEventListener("click", handleClick);
-    });
+    renderArticles(articles, container);
+    filterArticles(articles, container);
   } catch (error) {
     console.log(error);
   }
 })();
-
-function handleClick(event) {
-  const items = storageGetItem(storageKey);
-  const id = event.target.dataset.id;
-  const title = event.target.dataset.title;
-  const author = event.target.dataset.author;
-  const summary = event.target.dataset.summary;
-}
