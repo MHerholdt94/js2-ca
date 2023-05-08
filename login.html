@@ -12,16 +12,26 @@
 
 <body>
     <header>
-        <nav>
-            <a href="index.html">Home</a> |
-            <a href="favs.html">Favourites</a> |
-            <a href="login.html" class="active">Login</a>
-        </nav>
+        <nav></nav>
         <h1>Animals Daily</h1>
     </header>
     <main>
-        <h2>Login</h2>
-        <p>Coming soon!</p>
+        <form>
+            <h2>Login</h2>
+            <div class="message-container"></div>
+
+            <div class="form-username">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username">
+            </div>
+
+            <div class="form-password">
+                <label for="password">Password</label>
+                <input type="text" name="password" id="password">
+            </div>
+
+            <button type="submit" class="btn btn-blue">Log in</button>
+        </form>
     </main>
     <script src="js/login.js" type="module"></script>
 </body>

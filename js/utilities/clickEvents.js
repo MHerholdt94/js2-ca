@@ -1,4 +1,5 @@
 import { storageKey, storageGetItem, storageSetItem } from "./storage.js";
+import message from "../components/message.js";
 
 export function addToFav() {
   this.children[0].classList.toggle("fa-solid");
@@ -47,7 +48,7 @@ export function removeFromFav() {
 }
 
 export function removeAllFromFav() {
-  confirm("Are you sure you want to remove all favourites?");
+  confirm("Are you sure you want to remove all articles from favourites?");
   if (confirm) {
     const articles = document.querySelectorAll(".article");
     articles.forEach((article) => {
@@ -62,9 +63,28 @@ export function removeAllFromFav() {
 
 function checkStorageLength() {
   if (storageGetItem(storageKey).length === 0) {
-    const container = document.querySelector(".favs-container");
-    const button = document.querySelector(".clear");
-    container.innerHTML = "You have not added any articles to favourites yet";
+    const container = ".favs-container";
+    const button = document.querySelector(".btn-clear");
+    message(
+      "warning",
+      "You have not added any articles to favourites yet",
+      container
+    );
     button.style.display = "none";
+  }
+}
+
+export function logoutButton() {
+  const logoutButton = document.querySelector("#logout");
+
+  if (logoutButton) {
+    logoutButton.onclick = function () {
+      const logoutConfirmation = confirm("Logout?");
+
+      if (logoutConfirmation) {
+        localStorage.clear();
+        location.href = "/";
+      }
+    };
   }
 }

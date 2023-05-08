@@ -4,6 +4,7 @@ import {
   removeFromFav,
   removeAllFromFav,
 } from "../utilities/clickEvents.js";
+import message from "./message.js";
 
 export function renderArticles(article, target) {
   const element = document.querySelector(target);
@@ -66,12 +67,16 @@ export function renderFavourites(article, target) {
     btn.addEventListener("click", removeFromFav);
   });
 
-  const removeAllButton = document.querySelector(".clear");
+  const removeAllButton = document.querySelector(".btn-clear");
 
   removeAllButton.addEventListener("click", removeAllFromFav);
 
   if (favourites.length === 0) {
-    element.innerHTML = "You have not added any articles to favourites yet";
+    message(
+      "warning",
+      "You have not added any articles to favourites yet",
+      target
+    );
     removeAllButton.style.display = "none";
   }
 }

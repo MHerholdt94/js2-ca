@@ -13,3 +13,24 @@ export function storageGetItem(key) {
     return JSON.parse(favs);
   }
 }
+
+const tokenKey = "token";
+const userKey = "user";
+
+export function saveToken(token) {
+  localStorage.setItem(tokenKey, JSON.stringify(token));
+}
+
+export function saveUser(user) {
+  localStorage.setItem(userKey, JSON.stringify(user));
+}
+
+export function getUsername() {
+  const user = storageGetItem(userKey);
+
+  if (user) {
+    return user.username;
+  }
+
+  return null;
+}
