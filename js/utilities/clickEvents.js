@@ -1,5 +1,7 @@
 import { storageKey, storageGetItem, storageSetItem } from "./storage.js";
 import message from "../components/message.js";
+import { getToken } from "./storage.js";
+import { baseUrl } from "../settings/api.js";
 
 export function addToFav() {
   this.children[0].classList.toggle("fa-solid");
@@ -23,6 +25,39 @@ export function addToFav() {
   } else {
     const newStorage = currentStorage.filter((article) => article.id !== id);
     storageSetItem({ key: storageKey, value: newStorage });
+  }
+}
+
+export function deleteArticle(id) {
+  const button = document.querySelector(".delete-btn");
+
+  button.addEventListener("click", handleDelete);
+
+  async function handleDelete() {
+    const deleteConfirmation = confirm(
+      "Are you sure you want to delete this article?"
+    );
+
+    if (deleteConfirmation) {
+      const url = `${baseUrl}articles/${id}`;
+      const token = getToken();
+      const options = {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
+
+      try {
+        const response = await fetch(url, options);
+        const json = await response.json();
+        location.href = "/";
+        console.log(json);
+      } catch (error) {
+        console.log(error);
+        message("danger", error, ".message-container");
+      }
+    }
   }
 }
 

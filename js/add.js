@@ -74,7 +74,7 @@ async function addArticle(values) {
       setTimeout(function () {
         messageContainer.innerHTML = "";
       }, 3000);
-      charCount.innerHTML = "65";
+      //   charCount.innerHTML = "65";
       form.reset();
     } else if (json && json.error) {
       message("danger", json.error, ".message-container");

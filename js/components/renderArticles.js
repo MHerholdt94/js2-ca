@@ -1,4 +1,8 @@
-import { storageKey, storageGetItem } from "../utilities/storage.js";
+import {
+  storageKey,
+  storageGetItem,
+  getUsername,
+} from "../utilities/storage.js";
 import {
   addToFav,
   removeFromFav,
@@ -9,6 +13,7 @@ import message from "./message.js";
 export function renderArticles(article, target) {
   const element = document.querySelector(target);
   const storage = storageGetItem(storageKey);
+  const usernameExists = getUsername();
 
   element.innerHTML = "";
 
@@ -24,18 +29,29 @@ export function renderArticles(article, target) {
     }
 
     element.innerHTML += `<div class="article">
-                                <div class="article-content">
-                                    <h3>${article.title}</h3>
-                                    <p>by ${article.author}</p>
-                                    <p>${article.summary}</p>
-                                </div>
-                                <div class="article-button" data-id="${article.id}" data-title="${article.title}" data-author="${article.author}" data-summary="${article.summary}">
-                                    <i class="${icon} fa-heart"></i>
-                                </div>
-                            </div>`;
+                            <div class="article-content">
+                              <h3>${article.title}</h3>
+                              <p>by ${article.author}</p>
+                              <p>${article.summary}</p>
+                            </div>
+                            <a href="edit.html?id=${article.id}" class="edit-button">
+                              <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                            <div class="fav-button" data-id="${article.id}" data-title="${article.title}" data-author="${article.author}" data-summary="${article.summary}">
+                              <i class="${icon} fa-heart"></i>
+                            </div>
+                          </div>`;
   });
 
-  const addToFavButtons = document.querySelectorAll(".article-button");
+  const editArticleButtons = document.querySelectorAll(".edit-button");
+
+  editArticleButtons.forEach((btn) => {
+    if (!usernameExists) {
+      btn.style.display = "none";
+    }
+  });
+
+  const addToFavButtons = document.querySelectorAll(".fav-button");
 
   addToFavButtons.forEach((btn) => {
     btn.addEventListener("click", addToFav);
@@ -55,13 +71,13 @@ export function renderFavourites(article, target) {
                                     <p>by ${fav.author}</p>
                                     <p>${fav.summary}</p>
                                 </div>
-                                <div class="article-button" data-id="${fav.id}" data-title="${article.title}" data-author="${article.author}" data-summary="${article.summary}">
+                                <div class="fav-button" data-id="${fav.id}" data-title="${article.title}" data-author="${article.author}" data-summary="${article.summary}">
                                     <i class="fa-solid fa-circle-xmark"></i>
-                                </div>    
+                                </div>
                             </div>`;
   });
 
-  const removeFromFavButtons = document.querySelectorAll(".article-button");
+  const removeFromFavButtons = document.querySelectorAll(".fav-button");
 
   removeFromFavButtons.forEach((btn) => {
     btn.addEventListener("click", removeFromFav);

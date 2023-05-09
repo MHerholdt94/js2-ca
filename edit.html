@@ -35,10 +35,13 @@
             <div>
                 <label for="summary">Summary <span>max. 65 characters</span></label>
                 <textarea name="summary" id="editSummary" maxLength="65"></textarea>
-                <span id="charCount">65</span>
+                <!-- <span id="charCount">65</span> -->
             </div>
 
-            <button type="submit" class="btn btn-blue">Edit article</button>
+            <div class="btn-row">
+                <button type="button" class="btn btn-red delete-btn">Delete</button>
+                <button type="submit" class="btn btn-blue">Confirm</button>
+            </div>
         </form>
     </main>
     <script src="js/edit.js" type="module"></script>

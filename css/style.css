@@ -17,7 +17,8 @@ main {
     max-width: 1166px;
     flex-direction: column;
     justify-content: center;
-    margin: 3rem auto;
+    margin: auto;
+    padding: 3rem;
 }
 
 h1 {
@@ -143,7 +144,7 @@ a.active {
     padding: 1rem;
     border: 1px solid transparent;
     border-radius: 6px 0 0 6px;
-    width: 300px;
+    width: 250px;
 }
 
 .article-content p:first-of-type {
@@ -151,24 +152,56 @@ a.active {
     font-style: italic;
 }
 
-.article-button {
+.edit-button {
+    display: flex;
+    justify-content: center;
+    background-color: #264d61;
+    color: white;
+    cursor: pointer;
+}
+
+.edit-button i {
+    align-self: center;
+    padding: .5rem;
+    font-size: 1.35rem;
+}
+
+.edit-button:hover {
+    background-color: #033149;
+}
+
+.fav-button {
     display: flex;
     justify-content: center;
     background-color: #ad4c53;
     border-radius: 0 6px 6px 0;
     color: white;
     cursor: pointer;
-    transition: .1s;
 }
 
-.article-button i {
+.fav-button i {
     align-self: center;
     padding: .5rem;
-    font-size: 1.75rem;
+    font-size: 1.5rem;
 }
 
-.article-button:hover {
+.fav-button:hover {
     background-color: #ae212a;
+}
+
+.btn-row {
+    display: flex;
+    justify-content: center;
+    gap: .33rem;
+}
+
+.btn-row button {
+    margin: 1rem 0 0;
+}
+
+.btn-row .btn-red {
+    max-width: 60px;
+    padding: .5rem 0;
 }
 
 .message {
