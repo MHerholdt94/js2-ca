@@ -1,9 +1,15 @@
 import { baseUrl } from "./settings/api.js";
-import { saveToken, saveUser } from "./utilities/storage.js";
+import { saveToken, saveUser, getUsername } from "./utilities/storage.js";
 import renderMenu from "./components/renderMenu.js";
 import message from "./components/message.js";
 
 renderMenu();
+
+const usernameExists = getUsername();
+
+if (usernameExists) {
+  location.href = "/";
+}
 
 const messageContainer = document.querySelector(".message-container");
 const form = document.querySelector("form");

@@ -18,11 +18,15 @@ const tokenKey = "token";
 const userKey = "user";
 
 export function saveToken(token) {
-  localStorage.setItem(tokenKey, JSON.stringify(token));
+  storageSetItem({ key: tokenKey, value: token });
 }
 
 export function saveUser(user) {
-  localStorage.setItem(userKey, JSON.stringify(user));
+  storageSetItem({ key: userKey, value: user });
+}
+
+export function getToken() {
+  return storageGetItem(tokenKey);
 }
 
 export function getUsername() {

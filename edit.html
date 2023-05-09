@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add article | JS2 Course Assignment</title>
+    <title>Edit article | JS2 Course Assignment</title>
     <link href="css/style.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/c609dd8d17.js" crossorigin="anonymous"></script>
 </head>
@@ -17,29 +17,31 @@
     </header>
     <main>
         <form>
-            <h2>Add article</h2>
+            <h2>Edit article</h2>
             <div class="message-container"></div>
 
             <div>
                 <label for="title">Title</label>
-                <input type="text" name="title" id="addTitle" />
+                <input type="text" name="title" id="editTitle" />
             </div>
 
             <div>
                 <label for="author">Author</label>
-                <input type="text" name="author" id="addAuthor" />
+                <input type="text" name="author" id="editAuthor" />
             </div>
+
+            <input id="editId" type="hidden" />
 
             <div>
                 <label for="summary">Summary <span>max. 65 characters</span></label>
-                <textarea name="summary" id="addSummary" maxLength="65"></textarea>
-                <!-- <span id="charCount">65</span> -->
+                <textarea name="summary" id="editSummary" maxLength="65"></textarea>
+                <span id="charCount">65</span>
             </div>
 
-            <button type="submit" class="btn btn-blue">Add article</button>
+            <button type="submit" class="btn btn-blue">Edit article</button>
         </form>
     </main>
-    <script src="js/add.js" type="module"></script>
+    <script src="js/edit.js" type="module"></script>
 </body>
 
 </html>
