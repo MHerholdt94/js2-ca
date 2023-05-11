@@ -52,7 +52,8 @@ a.active {
 
 .filter-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 1rem;
     margin-bottom: 1rem;
     padding-top: .8rem;
     border: 1px solid #33333330;
@@ -144,7 +145,7 @@ a.active {
     padding: 1rem;
     border: 1px solid transparent;
     border-radius: 6px 0 0 6px;
-    width: 250px;
+    width: 304px;
 }
 
 .article-content p:first-of-type {
@@ -152,18 +153,18 @@ a.active {
     font-style: italic;
 }
 
+.article-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
 .edit-button {
     display: flex;
     justify-content: center;
-    background-color: #264d61;
-    color: white;
-    cursor: pointer;
-}
-
-.edit-button i {
-    align-self: center;
-    padding: .5rem;
+    background-color: #264D61;
+    border-radius: 0 6px 0 0;
     font-size: 1.35rem;
+    padding: .5rem;
 }
 
 .edit-button:hover {
@@ -171,28 +172,31 @@ a.active {
 }
 
 .fav-button {
+    height: 100%;
+}
+
+.fav-button, .remove-button {
     display: flex;
-    justify-content: center;
+    align-items: center;
     background-color: #ad4c53;
-    border-radius: 0 6px 6px 0;
     color: white;
+    border-radius: 0 6px 6px 0;
     cursor: pointer;
-}
-
-.fav-button i {
-    align-self: center;
-    padding: .5rem;
     font-size: 1.5rem;
+    padding: .5rem;
 }
 
-.fav-button:hover {
-    background-color: #ae212a;
+.fav-button:hover, .remove-button:hover {
+    background-color: #612126;
 }
 
 .btn-row {
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-self: center;
     gap: .33rem;
+    width: 100%;
 }
 
 .btn-row button {
@@ -220,7 +224,7 @@ a.active {
 }
 
 .danger {
-    background-color: #ad4c52;
+    background-color: #ad4c53;
     color: white;
 }
 
@@ -252,7 +256,6 @@ form {
     flex-direction: column;
     gap: 1rem;
     margin: auto;
-    max-width: fit-content;
     padding: 2rem;
     background-color: white;
     border-radius: 2px;
@@ -262,12 +265,12 @@ form h2 {
     margin: 0;
 }
 
-form label {
-    display: block;
+form div {
+    display: flex;
+    flex-direction: column;
 }
 
 form input {
-    width: 250px;
     padding: .5rem;
     font-size: 1rem;
     background-color: #f3f3f3;
@@ -280,14 +283,13 @@ form input:focus, form textarea:focus {
 }
 
 form button {
-    width: 100px;
+    width: 50%;
     margin: 1rem auto 0;
 }
 
 form textarea {
     position: relative;
     height: 60px;
-    width: 250px;
     padding: .5rem;
     font-family: sans-serif;
     font-size: 1rem;
@@ -312,23 +314,73 @@ form div:last-of-type {
 
 form label span {
     font-size: .8rem;
-    color: #ad4c52;
+    color: #ad4c53;
     float: right;
 }
 
-@media (max-width: 500px) {
-    main {
-        margin: .66rem;
+@media (max-width: 867px) {
+    .article {
+        width: 48%;
     }
 
     .article-content {
-        width: 200px;
+        width: 100%;
     }
 }
 
-@media (min-width: 500px) {
+@media (max-width: 660px) {
+    header {
+        display: flex;
+        flex-direction: column;
+        padding: 1.5rem 1rem;
+    }
+
+    nav {
+        margin: auto;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 1.66rem;
+    }
+
+    form {
+        margin-top: 3rem;
+        padding: 1.33rem 1rem;
+        width: 80%;
+    }
+
+    /* form button {
+        height: 40px;
+    } */
+
+    .profile {
+        align-items: start;
+        width: fit-content;
+        margin-top: .33rem;
+        padding: .33rem .33rem .33rem .5rem;
+        gap: .5rem;
+        float: none;
+        margin: .5rem auto 0;
+    }
+
+    .profile p {
+        align-self: center;
+    }
+
+    .article {
+        width: 100%;
+    }
+
     .filter-container {
-        flex-direction: row;
-        gap: 1rem;
+        flex-direction: column;
+        gap: 0;
     }
 }

@@ -83,14 +83,16 @@ export function removeFromFav() {
 }
 
 export function removeAllFromFav() {
-  confirm("Are you sure you want to remove all articles from favourites?");
-  if (confirm) {
+  const removeAllConfirmation = confirm(
+    "Are you sure you want to remove all articles from favourites?"
+  );
+  if (removeAllConfirmation) {
     const articles = document.querySelectorAll(".article");
     articles.forEach((article) => {
       article.style.display = "none";
     });
 
-    localStorage.clear();
+    localStorage.removeItem("articles");
 
     checkStorageLength();
   }
@@ -117,7 +119,9 @@ export function logoutButton() {
       const logoutConfirmation = confirm("Logout?");
 
       if (logoutConfirmation) {
-        localStorage.clear();
+        ["token", "user"].forEach(function (key) {
+          localStorage.removeItem(key);
+        });
         location.href = "/";
       }
     };

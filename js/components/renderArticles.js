@@ -34,11 +34,13 @@ export function renderArticles(article, target) {
                               <p>by ${article.author}</p>
                               <p>${article.summary}</p>
                             </div>
-                            <a href="edit.html?id=${article.id}" class="edit-button">
-                              <i class="fa-regular fa-pen-to-square"></i>
-                            </a>
-                            <div class="fav-button" data-id="${article.id}" data-title="${article.title}" data-author="${article.author}" data-summary="${article.summary}">
-                              <i class="${icon} fa-heart"></i>
+                            <div class="article-buttons">
+                              <a href="edit.html?id=${article.id}" class="edit-button">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                              </a>
+                              <div class="fav-button" data-id="${article.id}" data-title="${article.title}" data-author="${article.author}" data-summary="${article.summary}">
+                                <i class="${icon} fa-heart"></i>
+                              </div>
                             </div>
                           </div>`;
   });
@@ -55,6 +57,10 @@ export function renderArticles(article, target) {
 
   addToFavButtons.forEach((btn) => {
     btn.addEventListener("click", addToFav);
+
+    if (usernameExists) {
+      btn.style.borderTopRightRadius = "0";
+    }
   });
 }
 
@@ -71,13 +77,13 @@ export function renderFavourites(article, target) {
                                     <p>by ${fav.author}</p>
                                     <p>${fav.summary}</p>
                                 </div>
-                                <div class="fav-button" data-id="${fav.id}" data-title="${article.title}" data-author="${article.author}" data-summary="${article.summary}">
+                                <div class="remove-button" data-id="${fav.id}" data-title="${article.title}" data-author="${article.author}" data-summary="${article.summary}">
                                     <i class="fa-solid fa-circle-xmark"></i>
                                 </div>
                             </div>`;
   });
 
-  const removeFromFavButtons = document.querySelectorAll(".fav-button");
+  const removeFromFavButtons = document.querySelectorAll(".remove-button");
 
   removeFromFavButtons.forEach((btn) => {
     btn.addEventListener("click", removeFromFav);
