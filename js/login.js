@@ -26,6 +26,26 @@ function handleSubmit(event) {
   const usernameValue = username.value.trim();
   const passwordValue = password.value.trim();
 
+  if (usernameValue.length === 0 && passwordValue.length === 0) {
+    return message(
+      "warning",
+      "Please provide valid login details",
+      ".message-container"
+    );
+  } else if (usernameValue.length === 0) {
+    return message(
+      "warning",
+      "Please provide a username",
+      ".message-container"
+    );
+  } else if (passwordValue.length === 0) {
+    return message(
+      "warning",
+      "Please provide a password",
+      ".message-container"
+    );
+  }
+
   loginUser(usernameValue, passwordValue);
 }
 
@@ -57,18 +77,16 @@ async function loginUser(username, password) {
       setTimeout(function () {
         location.href = "/";
       }, 1500);
-    }
-
-    saveToken(json.jwt);
-    saveUser(json.user);
-
-    if (json.error) {
-      message(
+    } else if (json.error) {
+      return message(
         "warning",
         "Please provide valid login details",
         ".message-container"
       );
     }
+
+    saveToken(json.jwt);
+    saveUser(json.user);
   } catch (error) {
     console.log(error);
     message("danger", error, ".message-container");
