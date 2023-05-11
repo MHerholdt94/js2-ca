@@ -2,7 +2,6 @@ import renderMenu from "./components/renderMenu.js";
 import message from "./components/message.js";
 import { baseUrl } from "./settings/api.js";
 import { getToken, getUsername } from "./utilities/storage.js";
-// import updateCharCount from "./utilities/inputEvents.js";
 
 renderMenu();
 
@@ -14,10 +13,7 @@ if (!usernameExists) {
 
 const form = document.querySelector("form");
 const messageContainer = document.querySelector(".message-container");
-// const summaryTextarea = document.querySelector("#addSummary");
-// const charCount = document.querySelector("#charCount");
 
-// summaryTextarea.addEventListener("input", updateCharCount);
 form.addEventListener("submit", handleSubmit);
 
 function handleSubmit(event) {
@@ -74,7 +70,6 @@ async function addArticle(values) {
       setTimeout(function () {
         messageContainer.innerHTML = "";
       }, 3000);
-      //   charCount.innerHTML = "65";
       form.reset();
     } else if (json && json.error) {
       message("danger", json.error, ".message-container");
@@ -84,11 +79,3 @@ async function addArticle(values) {
     message("danger", error, ".message-container");
   }
 }
-
-// function updateCharCount() {
-//   const maxLength = parseInt(summaryTextarea.maxLength);
-//   const currentLength = summaryTextarea.value.length;
-//   const charsLeft = maxLength - currentLength;
-
-//   charCount.textContent = `${charsLeft}`;
-// }
